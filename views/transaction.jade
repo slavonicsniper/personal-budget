@@ -1,6 +1,10 @@
 extends nav
 
 append content
+  if errors
+    ul.errorMessage
+      each val in errors
+        li= val.message
   .form
     h2.subtitle= title
     if transaction 
@@ -14,7 +18,13 @@ append content
     else
       form(action="/transactions", method="post")
         div
-          input#sender_envelope(type="text", name="sender_envelope", placeholder="send from envelope", required)
+          if userEnvelopes
+            input#sender_envelope(type="text" list="envelopes", name="sender_envelope", placeholder="send from envelope", required)
+            datalist#envelopes
+              each envelope in userEnvelopes 
+                option(value="#{envelope.name}")
+          else
+            input#sender_envelope(type="text", name="sender_envelope", placeholder="send from envelope", required)
         div
           input#reciever_user(type="text", name="reciever_user", placeholder="send to user", required)
         div
