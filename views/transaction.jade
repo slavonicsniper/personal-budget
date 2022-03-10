@@ -1,0 +1,25 @@
+extends nav
+
+append content
+  .form
+    h2.subtitle= title
+    if transaction 
+      div 
+        | sender: #{transaction.sender_user.username} <br>
+        | reciever: #{transaction.reciever_user.username} <br>
+        | sender envelope: #{transaction.sender_envelope.name} <br>
+        | reciever envelope: #{transaction.reciever_envelope.name} <br>
+        | payment amount: #{transaction.payment_amount} EUR<br>
+        | date: #{transaction.date}
+    else
+      form(action="/transactions", method="post")
+        div
+          input#sender_envelope(type="text", name="sender_envelope", placeholder="send from envelope", required)
+        div
+          input#reciever_user(type="text", name="reciever_user", placeholder="send to user", required)
+        div
+          input#reciever_envelope(type="text", name="reciever_envelope", placeholder="send to envelope", required)
+        div
+          input#payment_amount(type="number", name="payment_amount", placeholder="payment amount", required)
+        div
+          input(type="submit", value="Send")

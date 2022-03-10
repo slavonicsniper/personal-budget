@@ -1,0 +1,84 @@
+body {
+  font-family: "monospace";
+  color: midnightblue;
+}
+
+.title {
+  text-align: center;
+  background-color: midnightblue;
+  color: aliceblue;
+  margin: 0;
+}
+
+.subtitle {
+  text-align: center;
+}
+
+.form {
+  margin: auto;
+  text-align: center;
+  border: 2px solid midnightblue;
+  border-radius: 5%;
+  padding: 1%;
+  width: fit-content;
+  margin-top: 10px;
+}
+
+.menu {
+  background-color: midnightblue;
+}
+
+.menu a {
+  color: aliceblue;
+  padding-left: 5px;
+  text-decoration: none;
+}
+
+.logout {
+  float: right;
+  padding-right: 5px;
+}
+
+.envelopes a {
+  color: midnightblue;
+  text-decoration: none;
+  padding: 5px;
+  display: block;
+  width: 20%;
+  border: 2px solid midnightblue;
+  border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.transactions div{
+  width: 49%;
+}
+
+.transactions a {
+  color: midnightblue;
+  text-decoration: none;
+  display: block;
+}
+
+.recievedTransactions {
+  float: left;
+  border-right: 2px solid midnightblue;
+}
+
+.sentTransactions {
+  float: right;
+}
+
+.successMessage {
+  background-color: lightseagreen;
+  color: darkslategrey;
+  list-style-type: none;
+}
+
+.errorMessage {
+  background-color: lightsalmon;
+  color: red;
+  list-style-type: none;
+}

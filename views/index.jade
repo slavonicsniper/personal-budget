@@ -1,0 +1,10 @@
+extends nav
+
+append content
+  if messages.success_msg
+    ul.successMessage
+      li= messages.success_msg
+  h2.subtitle Envelopes
+  .envelopes
+    each envelope in userEnvelopes 
+      a(href="/envelopes/name/#{envelope.name}") #{envelope.name}

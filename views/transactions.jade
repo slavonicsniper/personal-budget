@@ -1,0 +1,15 @@
+extends nav
+
+append content
+  if messages.success_msg
+    ul.successMessage
+      li= messages.success_msg
+  .transactions
+    .recievedTransactions
+      h2 Recieved Transactions
+      each transaction in recievedTransactions
+        a(href="/transactions/#{transaction.id}") #{transaction.date} #{transaction.sender_user.username} #{transaction.payment_amount} EUR
+    .sentTransactions
+      h2 Sent Transactions
+      each transaction in sentTransactions 
+        a(href="/transactions/#{transaction.id}") #{transaction.date} #{transaction.reciever_user.username} #{transaction.payment_amount} EUR 

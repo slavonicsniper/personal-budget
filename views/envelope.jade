@@ -1,0 +1,22 @@
+extends nav
+
+append content
+  .form
+    h2= title
+    if envelope 
+      div
+        input#name(type="text", name="name", placeholder="Envelope name", value=envelope.name, required)
+      div
+        input#budget(type="number", name="budget", placeholder="budget", value=envelope.budget, required)
+      div 
+        button(onclick="updateEnvelope(#{envelope.id})") Update 
+        button(onclick="deleteEnvelope(#{envelope.id})") Delete
+      script(src="/javascripts/script.js") 
+    else
+      form(action="/envelopes", method="post")
+        div
+          input#name(type="text", name="name", placeholder="Envelope name", required)
+        div
+          input#budget(type="number", name="budget", placeholder="budget", required)
+        div
+          input(type="submit", value="Create")
