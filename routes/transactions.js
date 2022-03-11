@@ -169,23 +169,23 @@ transactionsRouter.post('/', async(req, res, next) => {
             if (!reciever) {
                 errors.push({message: "Incorrect reciever envelope"})
             }
-        }
-        if(errors.length > 0) {
-            const userEnvelopes = await Envelope.findAll({where: {user_id: req.user.id}})
-            res.render('transaction', {errors, userEnvelopes})
-        }
-        else {
-            await sender.update({budget: sender.budget - paymentAmount})
-            await reciever.update({budget: reciever.budget + paymentAmount})
-            await Transaction.create({
-                sender_user_id: req.user.id, 
-                sender_envelope_id: sender.id,
-                reciever_envelope_id: reciever.id,
-                reciever_user_id: recieverUser.id,
-                payment_amount: paymentAmount
-            })
-            req.flash("success_msg", "Transaction sent.")
-            res.redirect('/')
+            if(errors.length > 0) {
+                const userEnvelopes = await Envelope.findAll({where: {user_id: req.user.id}})
+                res.render('transaction', {errors, userEnvelopes})
+            }
+            else {
+                await sender.update({budget: sender.budget - paymentAmount})
+                await reciever.update({budget: reciever.budget + paymentAmount})
+                await Transaction.create({
+                    sender_user_id: req.user.id, 
+                    sender_envelope_id: sender.id,
+                    reciever_envelope_id: reciever.id,
+                    reciever_user_id: recieverUser.id,
+                    payment_amount: paymentAmount
+                })
+                req.flash("success_msg", "Transaction sent.")
+                res.redirect('/')
+            }
         }
     } catch(err) {
         next(err)
